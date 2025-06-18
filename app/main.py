@@ -14,6 +14,9 @@ ALGORITHM = "HS256"
 # Load CORS origins from environment variable
 CORS_ORIGINS = os.getenv("CORS_ORIGINS", "*")  # Default to "*" if not set
 
+# Load CORS origins from environment variable
+DATA_PATH = os.getenv("DATA_PATH", "/data")  # Default to "*" if not set
+
 # FastAPI app
 app = FastAPI()
 
@@ -27,7 +30,7 @@ app.add_middleware(
 )
 
 # Base directory for file storage (restrict access to this directory)
-BASE_DIR = Path("/data").resolve()
+BASE_DIR = Path(DATA_PATH).resolve()
 os.makedirs(BASE_DIR, exist_ok=True)
 
 # OAuth2 scheme for token-based authentication
